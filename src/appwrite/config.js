@@ -69,8 +69,78 @@ export class Service{
         }
       }
      
-      async getp
+      async getpost(slug){
+           try {
+            return await this.databases.getDocument(
+                conf.appwritedatabaseId,
+                conf.appwriteCollectionId,
+                slug
+            )
+           } catch (error) {
+            console.log("appwrite service :: getCurrentUser::error",error);
+            return false
+           }
+      }
      
+
+      async getposts(queries=[Query.equal("status","active")]){
+                   try {
+                      return await this.databases.listDocuments(
+                        conf.appwritedatabaseId,
+                        conf.appwriteCollectionId,
+                        queries,
+
+                      ) 
+                   } catch (error) {
+                    console.log("appwrite service :: getCurrentUser::error",error);
+                    return false
+                   }
+      }
+
+      //file upload services
+      async uploadFile(file){
+        try {
+            return await this.bucket.createFile(
+                conf.appwritebucketId,
+                ID.unique(),
+                file
+            )
+        } catch (error) {
+            console.log("appwrite service :: getCurrentUser::error",error);
+            return false
+            
+        }
+      } 
+     
+
+      async deleteFile(FileID){
+        try {
+              await this.bucket.deleteFile(
+                conf.appwritebucketId,
+                FileID
+              )
+              return true
+            
+        } catch (error) {
+           console.log("appwrite service :: getCurrentUser::error",error);
+           
+        }
+      }
+
+
+      getFilePreview(FileID){
+           return this.bucket.getFilePreview(
+            conf.appwritebucketId,
+            FileID
+           )
+      }
+      
+              
+
+
+
+
+      
 }
 
 
