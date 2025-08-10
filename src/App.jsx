@@ -1,15 +1,16 @@
-import appwriteUrl from "./conf/conf"
-import './App.css'
+import conf from "./conf/conf"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import authService from "./appwrite/Auth"
 import {login,logout}  from './store/authSlice'
+import { Footer, Header } from "./Components/Index"
+import { Outlet } from "react-router-dom"
 
 function App() {
-    const [loading,setloading]=useState(true)
-    const dispatch= useDispatch()
+    const [loading, setloading] = useState(true)
+    const dispatch = useDispatch()
     
-    useEffect(()=>{
+    useEffect(() => {
         authService.getCurrentUser()
         .then((userdata)=>{
           if(userdata){
@@ -24,7 +25,15 @@ function App() {
 
 
 
-  return ! loading ? (<div></div>):(<div></div>)
+  return ! loading ? (<div className="min-h-screen flex flex-wrap content-between bg-gray-400">
+     <div className=" w-full block">
+          <Header/>
+          <main>
+           Todo:   {/* <Outlet/> */}
+          </main>
+          <Footer/>
+     </div>
+  </div>): null
 }
 
 export default App
