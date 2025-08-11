@@ -1,5 +1,5 @@
 import React , { useState} from 'react'
-import { data, Link ,useNavigate } from 'react-router-dom'
+import {  Link ,useNavigate } from 'react-router-dom'
 import {login as authLogin} from '../store/authSlice'
 import {Button,Logo,Input } from './Index'
 import { useDispatch } from 'react-redux'
@@ -63,6 +63,21 @@ function Login() {
                 }
              })}
             />
+            <Input 
+            label="password :"
+            type="password"
+            placeholder="Enter your password"
+            {...register("password",{
+                required:true
+            })}
+            />
+
+            <Button 
+            type='submit'
+            className='w-full'
+            >Sign in</Button>
+             
+            
          </div>
         </form>
         </div>
