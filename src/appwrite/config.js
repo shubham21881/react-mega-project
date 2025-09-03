@@ -127,13 +127,22 @@ export class Service{
         }
       }
 
-
-      getFilePreview(FileID){
-           return this.bucket.getFilePreview(
+getFilePreview(fileId) {
+    try {
+        if (!fileId) {
+            console.warn('FileID is missing');
+            return null;
+        }
+        
+        return this.bucket.getFilePreview(
             conf.appwriteBucketId,
-            FileID
-           )
-      }
+            fileId
+        ).href;
+    } catch (error) {
+        console.error("Appwrite service :: getFilePreview :: error", error);
+        return null;
+    }
+}
       
               
 

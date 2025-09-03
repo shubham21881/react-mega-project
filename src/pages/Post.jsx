@@ -6,6 +6,7 @@ import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 
 export default function Post() {
+    const [imageError, setImageError] = useState(false);
     const [post, setPost] = useState(null);
     const { slug } = useParams();
     const navigate = useNavigate();
@@ -40,6 +41,10 @@ export default function Post() {
                         src={appwriteService.getFilePreview(post.featuredImage)}
                         alt={post.title}
                         className="rounded-xl"
+                        onError={(e) => {
+            console.error('Image load error:', e);
+            setImageError(true);
+        }}
                     />
 
                     {isAuthor && (
