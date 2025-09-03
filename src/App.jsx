@@ -12,9 +12,10 @@ function App() {
     
     useEffect(() => {
         authService.getCurrentUser()
-        .then((userdata)=>{
-          if(userdata){
-            dispatch(login({userdata}))
+        .then((userData)=>{
+          if(userData){
+            console.log("Current user data:", userData); 
+            dispatch(login({userData}))
           }else{
             dispatch(logout())
           }
@@ -29,7 +30,7 @@ function App() {
      <div className=" w-full block">
           <Header/>
           <main>
-           Todo:   {/* <Outlet/> */}
+         <Outlet/>
           </main>
           <Footer/>
      </div>

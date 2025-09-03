@@ -1,9 +1,10 @@
 import React from 'react'
-import { Login as loginComponent } from '../Components/Index'
+import { Login as LoginComponent } from '../Components/Index'
+
 function Login() {
   return (
     <div className='py-8'>
-        <loginComponent />
+        <LoginComponent />
     </div>
   )
 }
