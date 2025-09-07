@@ -131,19 +131,17 @@ getFilePreview(fileId) {
     try {
         if (!fileId) {
             console.warn('FileID is missing');
-            return null;
+            return '';
         }
-        
-        return this.bucket.getFilePreview(
+        return this.bucket.getFileView(
             conf.appwriteBucketId,
             fileId
-        ).href;
+        );
     } catch (error) {
         console.error("Appwrite service :: getFilePreview :: error", error);
-        return null;
+        return '';
     }
-}
-      
+} 
               
 
 
